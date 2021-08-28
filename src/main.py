@@ -31,6 +31,7 @@ cprint("Default locale is {0}".format(CONFIG["default_locale"]), "green")
 bot = AutoShardedBot(command_prefix=Utils.get_prefix, help_command=None)
 launch_time = datetime.datetime.utcnow()
 
+
 @bot.event
 async def on_ready() -> NoReturn:
     for filename in os.listdir(filepath + "/cogs/"):
