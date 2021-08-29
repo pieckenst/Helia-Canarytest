@@ -2,11 +2,11 @@
 import math
 import random
 import re
+from collections import Counter, OrderedDict, deque
 from typing import NoReturn
 
 import discord
 from discord.ext import commands
-from collections import OrderedDict, deque, Counter
 from discord.ext.commands import Bot, Context
 
 from cogs.utils import Config, Logger, Settings, Strings
@@ -98,7 +98,7 @@ class Utilities(commands.Cog):
                     == discord.ChannelType.text) or channel.type not in [
                         discord.ChannelType.voice,
                         discord.ChannelType.news,
-            ]:
+                    ]:
                 type = STRINGS["etc"]["channel_type"]["text"]
             elif channel.type == discord.ChannelType.voice:
                 type = STRINGS["etc"]["channel_type"]["voice"]
@@ -258,11 +258,10 @@ class Utilities(commands.Cog):
         e.title = guild.name
         e.description = f"**ID**: {guild.id}\n**Owner**: {guild.owner}"
         if guild.icon:
-          e.set_thumbnail(url=f"{guild.icon.url}")
+            e.set_thumbnail(url=f"{guild.icon.url}")
         else:
-          e.set_thumbnail(url="https://cdn.discordapp.com/embed/avatars/1.png")
-
-
+            e.set_thumbnail(
+                url="https://cdn.discordapp.com/embed/avatars/1.png")
 
         channel_info = []
         key_to_emoji = {
