@@ -2,11 +2,11 @@
 import math
 import random
 import re
+from collections import Counter, OrderedDict, deque
 from typing import NoReturn
 
 import discord
 from discord.ext import commands
-from collections import OrderedDict, deque, Counter
 from discord.ext.commands import Bot, Context
 
 from cogs.utils import Config, Logger, Settings, Strings
@@ -98,7 +98,7 @@ class Utilities(commands.Cog):
                     == discord.ChannelType.text) or channel.type not in [
                         discord.ChannelType.voice,
                         discord.ChannelType.news,
-            ]:
+                    ]:
                 type = STRINGS["etc"]["channel_type"]["text"]
             elif channel.type == discord.ChannelType.voice:
                 type = STRINGS["etc"]["channel_type"]["voice"]
@@ -226,7 +226,7 @@ class Utilities(commands.Cog):
         if guild_id is not None and await self.bot.is_owner(ctx.author):
             guild = self.bot.get_guild(guild_id)
             if guild is None:
-                return await ctx.send('Invalid Guild ID given.')
+                return await ctx.send("Invalid Guild ID given.")
         else:
             guild = ctx.guild
 
@@ -297,8 +297,7 @@ class Utilities(commands.Cog):
 
         info = [
             f'{CONFIG["yes_emoji"]}: {label}'
-            for feature, label in all_features.items()
-            if feature in features
+            for feature, label in all_features.items() if feature in features
         ]
 
         if info:
